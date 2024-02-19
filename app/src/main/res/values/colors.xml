@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!--    Custom colors   -->
+    <color name="background_primary">#FF222222</color>
+    <color name="background_top_bar">#2B2B2B</color>
+    <color name="background_global">#FF161616</color>
+
+    <color name = "text_primary">#E6E6E6</color>
+
+    <color name="transparent">#00000000</color>
 </resources>
