@@ -22,7 +22,7 @@ abstract class HabitDao {
     @Query("SELECT * from habit_table WHERE id = :id")
     abstract fun getHabit(id: Int): Flow<HabitData>
 
-    @Query("SELECT * from habit_table WHERE title != '' OR habitNote != '' ORDER BY title ASC")
+    @Query("SELECT * from habit_table WHERE title != '' OR content != '' ORDER BY title ASC")
     abstract fun getAllHabits(): Flow<List<HabitData>>
 
     @Query("SELECT MAX(id) from habit_table")

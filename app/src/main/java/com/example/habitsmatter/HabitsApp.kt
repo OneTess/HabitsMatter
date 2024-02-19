@@ -1,4 +1,10 @@
 package com.example.habitsmatter
 
-class HabitsApp {
+import android.app.Application
+
+class HabitsApp : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        Graph.provide(this)
+    }
 }

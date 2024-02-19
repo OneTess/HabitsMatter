@@ -8,5 +8,5 @@ data class HabitData (
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val title: String = "",
-    val habitNote: String = ""
+    val content: String = ""
 )
