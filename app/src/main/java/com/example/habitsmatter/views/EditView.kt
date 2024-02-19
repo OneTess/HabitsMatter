@@ -90,7 +90,7 @@ fun EditView(
                     viewModel.onHabitTitleChanged(it)
                     autoSave(id, viewModel)
                 },
-                placeholder = "Title" // TODO: Put current YYYY-MM-DD as a placeholder and save it if title is empty
+                placeholder = "Title"
             )
 
             // Contents Text Field
@@ -102,7 +102,7 @@ fun EditView(
                     viewModel.onHabitContentsChanged(it)
                     autoSave(id, viewModel)
                 },
-                placeholder = "Write your habit here..."
+                placeholder = "Important comments"
             )
         }
     }
