@@ -89,6 +89,7 @@ fun TopBarView(
                     contentDescription = "Dropdown Menu",
                     tint = colorResource(id = R.color.text_primary)
                 )
+                // TODO: Does the app even need this DropdownMenu?
                 DropdownMenu(
                     expanded = expanded,
                     onDismissRequest = {

@@ -2,9 +2,12 @@ package com.example.habitsmatter.views
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -24,6 +27,7 @@ import com.example.habitsmatter.methods.autoSave
 import com.example.habitsmatter.statics.Constants
 import com.example.habitsmatter.uiElements.TopBarView
 import com.example.habitsmatter.uiElements.CustomTextField
+import com.example.habitsmatter.uiElements.RadioButtons
 
 @Composable
 fun EditView(
@@ -81,6 +85,10 @@ fun EditView(
         ) {
             val title by viewModel.habitTitleState.collectAsState()
             val content by viewModel.habitContentState.collectAsState()
+
+            // Buttons choosing Habit type
+            RadioButtons()
+
             // Title Text Field
             CustomTextField(
                 value = title,
@@ -93,7 +101,7 @@ fun EditView(
                 placeholder = "Title"
             )
 
-            // Contents Text Field
+            // Content Text Field
             CustomTextField(
                 value = content,
                 fontSize = Constants.fontSizeMedium,

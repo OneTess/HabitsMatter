@@ -13,6 +13,6 @@ object Graph {
     }
 
     fun provide(context: Context) {
-        database = Room.databaseBuilder(context, HabitDatabase::class.java, "habits.db").build()
+        database = Room.databaseBuilder(context, HabitDatabase::class.java, "habits.db").fallbackToDestructiveMigration().build()
     }
 }
