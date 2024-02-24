@@ -63,7 +63,11 @@ fun RadioButtons() {
                         modifier = Modifier.weight(1f)
                     ) {
                         Text(
-                            text = text,
+                            text = when (text) {
+                                "binary" -> { "Yes or no" }
+                                "enumerable" -> { "Number" }
+                                else -> { "Error!" }
+                            },
                             style = MaterialTheme.typography.bodyMedium.merge(), // TODO: Replace all text fields' text sizes with MaterialTheme.typography
                             color = colorResource(id = R.color.purple_200), // TODO: This is a testing color.
                             modifier = Modifier.padding(Constants.paddingMedium)
