@@ -19,9 +19,11 @@ import kotlinx.coroutines.launch
 class HabitViewModel(private val habitRepository: HabitRepository = Graph.habitRepository) : ViewModel() {
     private val _habitTitleState = MutableStateFlow("")
     private val _habitContentState = MutableStateFlow("")
+    private val _habitTypeState = MutableStateFlow("binary")
 
     val habitTitleState: StateFlow<String> = _habitTitleState
     val habitContentState: StateFlow<String> = _habitContentState
+    val habitTypeState: StateFlow<String> = _habitTypeState
 
     var idMax by mutableStateOf(0)
 
@@ -42,6 +44,10 @@ class HabitViewModel(private val habitRepository: HabitRepository = Graph.habitR
 
     fun onHabitContentsChanged(newString: String) {
         _habitContentState.value = newString
+    }
+
+    fun onHabitTypeChanged(newString: String) {
+        _habitTypeState.value = newString
     }
 
     fun addHabit(habitData: HabitData) {

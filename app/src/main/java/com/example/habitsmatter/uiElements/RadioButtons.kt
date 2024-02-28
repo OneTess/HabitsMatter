@@ -1,5 +1,6 @@
 package com.example.habitsmatter.uiElements
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -23,14 +24,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import com.example.habitsmatter.R
+import com.example.habitsmatter.data.HabitData
+import com.example.habitsmatter.data.HabitViewModel
 import com.example.habitsmatter.statics.Constants
 
 // TODO: Make those RadioButtons change the Note's type.
 @Composable
-fun RadioButtons() {
+fun RadioButtons(
+    viewModel: HabitViewModel,
+    onTypeChange: (String) -> Unit
+) {
     val radioOptions = listOf<String>("binary", "enumerable") // TODO: Use those only to define the button type and set a condition to display some custom text depending on the type.
     val (selectedOption, onOptionSelected) = remember {
-        mutableStateOf(radioOptions[1])
+        mutableStateOf(radioOptions[0])
     }
     Row(
         horizontalArrangement = Arrangement.Center
@@ -48,7 +54,13 @@ fun RadioButtons() {
                 modifier = Modifier
                     .weight(1f)
                     .padding(horizontal = Constants.paddingMedium)
-                    .clickable { onOptionSelected(text) }
+                    .clickable {
+                        // TODO: Just reuse everything you do to autosave Habit's title and contents
+                        // TODO: Consider implementing saving all Habit's data at once, not every individual element on its own. Just think if it will actually be a good idea.
+                        Log.d("RadioButtons", "Surface .clickable triggered")
+                        onOptionSelected(text)
+                        onTypeChange(text)
+                    }
             ) {
                 Row(
                     modifier = Modifier
@@ -64,7 +76,7 @@ fun RadioButtons() {
                     ) {
                         Text(
                             text = when (text) {
-                                "binary" -> { "Yes or no" }
+                                "binary" -> { "Yes or No" }
                                 "enumerable" -> { "Number" }
                                 else -> { "Error!" }
                             },
@@ -87,7 +99,9 @@ fun RadioButtons() {
                         RadioButton(
                             selected = (text == selectedOption),
                             onClick = {
-                                onOptionSelected(text)
+                                      Log.d("RadioButtons", "RadioButton onClick triggered")
+                                /*onOptionSelected(text)
+                                onTypeChange(text)*/
                             },
                             colors = RadioButtonDefaults.colors(
                                 selectedColor = MaterialTheme.colorScheme.primary,
@@ -98,5 +112,9 @@ fun RadioButtons() {
                 }
             }
         }
+    }
+    val onTypeChange: (String) -> Unit = { newType ->
+        // Update HabitData in Room database
+        viewModel.editHabit(HabitData(type = newType))
     }
 }

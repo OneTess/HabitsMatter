@@ -59,6 +59,7 @@ fun HabitItem(
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.Center
         ) {
+            // Title text field
             Text(
                 text = habitData.title,
                 fontWeight = FontWeight.ExtraBold,
@@ -67,7 +68,13 @@ fun HabitItem(
                 overflow = TextOverflow.Ellipsis
             )
             Spacer(modifier = androidx.compose.ui.Modifier.padding(Constants.paddingExtraSmall))
-            Text(text = habitData.content, fontSize = Constants.fontSizeMedium, maxLines = 2, overflow = TextOverflow.Ellipsis)
+            // Details text field
+            Text(
+                text = habitData.content,
+                fontSize = Constants.fontSizeMedium,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
+            )
 
             Row(
                 modifier = Modifier

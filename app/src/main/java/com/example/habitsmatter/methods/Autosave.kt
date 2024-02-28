@@ -11,20 +11,13 @@ fun autoSave(
     var newId = id
     if (id == 0) {
         newId = viewModel.idMax
-        viewModel.editHabit(
-            HabitData(
-                id = newId,
-                title = viewModel.habitTitleState.value.trim(),
-                content = viewModel.habitContentState.value.trim()
-            )
-        )
-    } else {
-        viewModel.editHabit(
-            HabitData(
-                id = newId,
-                title = viewModel.habitTitleState.value.trim(),
-                content = viewModel.habitContentState.value.trim()
-            )
-        )
     }
+    viewModel.editHabit(
+        HabitData(
+            id = newId,
+            title = viewModel.habitTitleState.value.trim(),
+            content = viewModel.habitContentState.value.trim(),
+            type = viewModel.habitTypeState.value
+        )
+    )
 }

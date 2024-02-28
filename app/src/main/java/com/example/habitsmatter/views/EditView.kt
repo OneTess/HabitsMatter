@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -85,21 +86,40 @@ fun EditView(
         ) {
             val title by viewModel.habitTitleState.collectAsState()
             val content by viewModel.habitContentState.collectAsState()
+            val type by viewModel.habitTypeState.collectAsState()
 
             // Buttons choosing Habit type
-            RadioButtons()
-
-            // Title Text Field
-            CustomTextField(
-                value = title,
-                fontSize = Constants.fontSizeExtraLarge,
-                fontWeight = FontWeight.Black,
-                onValueChange = {
-                    viewModel.onHabitTitleChanged(it)
+            // TODO: Only display those buttons to choose the Habit type on its creation, not when
+            //  editing. While the Habit entry in the db is being created, change its type
+            //  according to which option is currently selected. There is, however, no option
+            //  to change this after the Habit is created.
+            if (id == 0) {
+                RadioButtons(viewModel, onTypeChange = {
+                    viewModel.onHabitTypeChanged(it)
                     autoSave(id, viewModel)
-                },
-                placeholder = "Title"
-            )
+                })
+            }
+
+            Row {
+                // Testing Text Field
+                Text(text = when (type) {
+                    "binary" -> {"B"}
+                    "enumerable" -> {"N"}
+                    else -> {"E!"}
+                }
+                )
+                // Title Text Field
+                CustomTextField(
+                    value = title,
+                    fontSize = Constants.fontSizeExtraLarge,
+                    fontWeight = FontWeight.Black,
+                    onValueChange = {
+                        viewModel.onHabitTitleChanged(it)
+                        autoSave(id, viewModel)
+                    },
+                    placeholder = "Title"
+                )
+            }
 
             // Content Text Field
             CustomTextField(
