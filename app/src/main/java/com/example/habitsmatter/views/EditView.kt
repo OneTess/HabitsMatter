@@ -89,10 +89,6 @@ fun EditView(
             val type by viewModel.habitTypeState.collectAsState()
 
             // Buttons choosing Habit type
-            // TODO: Only display those buttons to choose the Habit type on its creation, not when
-            //  editing. While the Habit entry in the db is being created, change its type
-            //  according to which option is currently selected. There is, however, no option
-            //  to change this after the Habit is created.
             if (id == 0) {
                 RadioButtons(viewModel, onTypeChange = {
                     viewModel.onHabitTypeChanged(it)

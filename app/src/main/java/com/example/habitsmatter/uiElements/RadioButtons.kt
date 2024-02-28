@@ -28,13 +28,12 @@ import com.example.habitsmatter.data.HabitData
 import com.example.habitsmatter.data.HabitViewModel
 import com.example.habitsmatter.statics.Constants
 
-// TODO: Make those RadioButtons change the Note's type.
 @Composable
 fun RadioButtons(
     viewModel: HabitViewModel,
     onTypeChange: (String) -> Unit
 ) {
-    val radioOptions = listOf<String>("binary", "enumerable") // TODO: Use those only to define the button type and set a condition to display some custom text depending on the type.
+    val radioOptions = listOf<String>("binary", "enumerable")
     val (selectedOption, onOptionSelected) = remember {
         mutableStateOf(radioOptions[0])
     }
@@ -55,8 +54,8 @@ fun RadioButtons(
                     .weight(1f)
                     .padding(horizontal = Constants.paddingMedium)
                     .clickable {
-                        // TODO: Just reuse everything you do to autosave Habit's title and contents
-                        // TODO: Consider implementing saving all Habit's data at once, not every individual element on its own. Just think if it will actually be a good idea.
+                        // TODO: Consider implementing saving all Habit's data at once, not every
+                        //  individual element on its own. Just think if it will actually be a good idea.
                         Log.d("RadioButtons", "Surface .clickable triggered")
                         onOptionSelected(text)
                         onTypeChange(text)
