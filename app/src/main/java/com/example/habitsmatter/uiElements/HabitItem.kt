@@ -93,6 +93,8 @@ fun HabitItem(
                     )
                 }
             }
+
+            ProgressIndicator(type = "binary") // TODO: Pass the Habit data to the HabitItem to display the right type of the progress indicator
         }
     }
 }
