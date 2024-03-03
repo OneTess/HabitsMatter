@@ -20,10 +20,12 @@ class HabitViewModel(private val habitRepository: HabitRepository = Graph.habitR
     private val _habitTitleState = MutableStateFlow("")
     private val _habitContentState = MutableStateFlow("")
     private val _habitTypeState = MutableStateFlow("binary")
+    private val _habitProgressState = MutableStateFlow(0)
 
     val habitTitleState: StateFlow<String> = _habitTitleState
     val habitContentState: StateFlow<String> = _habitContentState
     val habitTypeState: StateFlow<String> = _habitTypeState
+    val habitProgressState: StateFlow<Int> = _habitProgressState
 
     var idMax by mutableStateOf(0)
 
@@ -48,6 +50,10 @@ class HabitViewModel(private val habitRepository: HabitRepository = Graph.habitR
 
     fun onHabitTypeChanged(newString: String) {
         _habitTypeState.value = newString
+    }
+
+    fun onHabitProgressChanged(newProgressValue: Int) {
+        _habitProgressState.value = newProgressValue
     }
 
     fun addHabit(habitData: HabitData) {

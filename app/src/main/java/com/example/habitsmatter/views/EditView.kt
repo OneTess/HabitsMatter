@@ -4,10 +4,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.rememberScaffoldState
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,6 +26,7 @@ import com.example.habitsmatter.methods.autoSave
 import com.example.habitsmatter.statics.Constants
 import com.example.habitsmatter.uiElements.TopBarView
 import com.example.habitsmatter.uiElements.CustomTextField
+import com.example.habitsmatter.uiElements.ProgressWriterView
 import com.example.habitsmatter.uiElements.RadioButtons
 
 @Composable
@@ -42,7 +41,7 @@ fun EditView(
     val scope = rememberCoroutineScope()
     val scaffoldState = rememberScaffoldState()
     if (id != 0) {
-        val habit = viewModel.getHabit(id).collectAsState(initial = HabitData(0, "", ""))
+        val habit = viewModel.getHabit(id).collectAsState(initial = HabitData(id = 0, title = "", content = ""))
         viewModel.onHabitTitleChanged(habit.value.title)
         viewModel.onHabitContentsChanged(habit.value.content)
     } else {
@@ -88,16 +87,22 @@ fun EditView(
             val content by viewModel.habitContentState.collectAsState()
             val type by viewModel.habitTypeState.collectAsState()
 
-            // Buttons choosing Habit type
             if (id == 0) {
+                // Buttons choosing Habit type
                 RadioButtons(viewModel, onTypeChange = {
                     viewModel.onHabitTypeChanged(it)
                     autoSave(id, viewModel)
                 })
+                // TODO: Option to define enumerable habit goal
+            } else {
+                // Slider defining habit's progress
+                ProgressWriterView(id, viewModel)
             }
 
             Row {
                 // Testing Text Field
+                // TODO: it displays the type incorrectly if both enum and binary Habits were open.
+                //  It just takes the type of the first opened Habit and sticks with it.
                 Text(text = when (type) {
                     "binary" -> {"B"}
                     "enumerable" -> {"N"}

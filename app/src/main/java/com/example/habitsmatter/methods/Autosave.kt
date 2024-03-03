@@ -17,7 +17,8 @@ fun autoSave(
             id = newId,
             title = viewModel.habitTitleState.value.trim(),
             content = viewModel.habitContentState.value.trim(),
-            type = viewModel.habitTypeState.value
+            type = viewModel.habitTypeState.value,
+            progress = viewModel.habitProgressState.value
         )
     )
 }
