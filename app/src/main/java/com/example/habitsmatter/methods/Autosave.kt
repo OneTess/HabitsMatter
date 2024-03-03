@@ -4,6 +4,8 @@ import com.example.habitsmatter.data.HabitData
 import com.example.habitsmatter.data.HabitViewModel
 
 // TODO: Disallow saving with empty title
+// TODO: When creating two or more enumerable Habits in a row (created one, edited it to give it
+//  some value, then created a second one), value from the already created one carries over to the next one.
 fun autoSave(
     id: Int,
     viewModel: HabitViewModel,

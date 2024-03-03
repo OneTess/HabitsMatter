@@ -1,5 +1,6 @@
 package com.example.habitsmatter.views
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -86,6 +87,8 @@ fun EditView(
             val title by viewModel.habitTitleState.collectAsState()
             val content by viewModel.habitContentState.collectAsState()
             val type by viewModel.habitTypeState.collectAsState()
+
+            Log.d("EditView", "val type = $type")
 
             if (id == 0) {
                 // Buttons choosing Habit type

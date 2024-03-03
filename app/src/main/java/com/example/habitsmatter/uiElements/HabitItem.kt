@@ -94,7 +94,7 @@ fun HabitItem(
                 }
             }
 
-            ProgressIndicator(progressType = "binary", progressValue = 1) // TODO: Pass the Habit data to the HabitItem to display the right type of the progress indicator
+            ProgressIndicator(progressType = habitData.type, progressValue = habitData.progress) // TODO: Properly display the corresponding type of progress
         }
     }
 }
